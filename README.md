@@ -1,5 +1,7 @@
-Unsplash Image Viewer
+Unsplash Photo Viewer
 =====================
+
+![screen shot](Screenshot.png)
 
 The architecture of this app imitated [android-architecture GitHubBrowserSample](https://github.com/android/architecture-components-samples/tree/main/GithubBrowserSample), but is created more simple.
 
@@ -18,5 +20,3 @@ Dependency is decrared in PhotoListViewApp.kt.
 Use LiveData to make the View and ViewModel work together.
 
 Test code is not complete.
-
-Api error handling is not complete.

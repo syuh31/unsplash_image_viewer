@@ -1,14 +1,12 @@
 package syuh31.example.photolistview.ui.imagelist
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,11 +59,14 @@ class ImageListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.image_list_fragment, container, false);
-        val listView = view.findViewById<ListView>(R.id.image_list_view)
+
+        val listView = view.findViewById<ListView>(R.id.imageListView)
         adapter = ImageListViewAdapter(view.context, imageInfoList)
         listView.adapter = adapter
+
+        val getPhotoButton = view.findViewById<Button>(R.id.getPhotoButton)
+        getPhotoButton.setOnClickListener { viewModel.init() }
 
         return view
     }
@@ -79,11 +80,12 @@ class ImageListFragment : Fragment() {
                         imageInfoList.addAll(apiResponse.body)
                         adapter.notifyDataSetChanged()
                     }
-                    is ApiErrorResponse -> {
-                        // TODO syuh31: handle api error
-                    }
-                    is ApiEmptyResponse -> {
-                        // TODO syuh31: handle api empty
+                    is ApiErrorResponse, is ApiEmptyResponse -> {
+                        AlertDialog.Builder(activity)
+                                .setTitle("error")
+                                .setMessage("fail get photos from unsplash.")
+                                .setPositiveButton("OK") { _, _ -> }
+                                .show()
                     }
                 }
 
