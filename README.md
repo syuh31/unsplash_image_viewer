@@ -1,7 +1,8 @@
 Unsplash Photo Viewer
 =====================
 
-![screen shot](Screenshot.png)
+<!-- ![screen shot](Screenshot.png) -->
+<img src="Screenshot.png" alt="drawing" width="200"/>
 
 The architecture of this app imitated [android-architecture GitHubBrowserSample](https://github.com/android/architecture-components-samples/tree/main/GithubBrowserSample), but is created more simple.
 
